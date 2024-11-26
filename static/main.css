@@ -29,3 +29,7 @@
    color: #fff;
    text-decoration: none;
  }
+.outputtab h4{
+    text-align: center;
+    font-family: monospace;
+}
