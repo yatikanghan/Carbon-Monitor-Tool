@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ (url_for('static', filename='main.css')) }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="headertxt">
+        <h1>CARBON MONITOR</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <h2 style="font-family: math;">Carbon Footprint Monitoring System</h2>
+        <div class="well">
+            <p>This carbon footprint monitoring tool helps you to analyse your company carbon emissions</p>
+            <ol>⦿ Energy Usage</ol>
+            <ol>⦿ Waste Management</ol>
+            <ol>⦿ Business Travel</ol>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <form class="form-group" action="#" method="post">
+            <div class="maincalculator">
+                <h2>Calculate :</h2>
+            </div>
+            <div class="well">
+                <label for="companyname">Company Name :</label>
+                <input type="text" class="form-control" placeholder="Company Name">
+            </div>
+            
+            <div class="well">
+                <h3>Energy Usage</h3>
+                <div class="row">
+                    <div class="formpart col-lg-4" style="margin: 20px 20px;">
+                        <label for="electricitybill">Monthly electricity bill in €</label>
+                        <input type="number" class="form-control" placeholder="Monthly Electricity Bill">
+                    </div>
+                    <div class="formpart col-lg-3" style="margin: 20px 5px;">
+                        <label for="electricitybill">Monthly natural gas bill in €</label>
+                        <input type="number" class="form-control" placeholder="Monthly Electricity Bill">
+                    </div>
+                    <div class="formpart col-lg-4" style="margin: 20px 10px;">
+                        <label for="electricitybill">Monthly fuel bill in transportation in €</label>
+                        <input type="number" class="form-control" placeholder="Monthly Fuel Bill">
+                    </div>
+                </div>
+            </div>
+
+            <div class="well">
+                <h3>Waste Management</h3>
+                <div class="row" style="margin: 0 20px;">
+                    <div class="formpart col-lg-6" style="margin: 20px 0;">
+                        <label for="electricitybill">Waste do you generate per month in KG</label>
+                        <input type="number" class="form-control" placeholder="Monthly Generated Waste in KG">
+                    </div>
+                    <div class="formpart col-lg-4" style="margin: 20px 0;">
+                        <label for="electricitybill">Monthly natural gas bill in €</label>
+                        <input type="range" min="0" max="100" value="0" class="slider" id="myRange"><span id="demo"></span>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="well">
+                <h3>Business Travel</h3>
+                <div class="row" style="margin: 0 20px;">
+                    <div class="formpart col-lg-6" style="margin: 20px 0;">
+                        <label for="electricitybill">How many km do your employees travel per year</label>
+                        <input type="number" class="form-control" placeholder="Employees Travel Per Year">
+                    </div>
+                    <div class="formpart col-lg-6" style="margin: 20px 0;">
+                        <label for="electricitybill">Average fuel efficiency of vehicles for travel in liters per 100 kms</label>
+                        <input type="number" class="form-control" placeholder="Fuel efficiency per 100 KM">
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="submitbtn" style="text-align: center;">
+                <button class="btn-grad" type="submit" style="text-align: center;">Generate Report</button>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+</body>
+<script>
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+</script>
+</html>
