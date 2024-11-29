@@ -28,7 +28,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <form class="form-group" action="/" method="post">
+        <form class="form-group" action="/report" method="post">
             <div class="maincalculator">
                 <h2>Calculate :</h2>
             </div>
@@ -42,15 +42,15 @@
                 <div class="row">
                     <div class="formpart col-lg-4" style="margin: 20px 20px;">
                         <label for="electricitybill">Monthly electricity bill in €</label>
-                        <input type="number" name="avgelectricitybill" class="form-control" placeholder="Monthly Electricity Bill">
+                        <input type="number" step='0.01' value='0.00' name="avgelectricitybill" class="form-control" placeholder="Monthly Electricity Bill">
                     </div>
                     <div class="formpart col-lg-3" style="margin: 20px 5px;">
                         <label for="electricitybill">Monthly natural gas bill in €</label>
-                        <input type="number" name="avggasbill" class="form-control" placeholder="Monthly Electricity Bill">
+                        <input type="number" step='0.01' value='0.00' name="avggasbill" class="form-control" placeholder="Monthly Electricity Bill">
                     </div>
                     <div class="formpart col-lg-4" style="margin: 20px 10px;">
                         <label for="electricitybill">Monthly fuel bill in transportation in €</label>
-                        <input type="number" name="avgfuelbill" class="form-control" placeholder="Monthly Fuel Bill">
+                        <input type="number" step='0.01' value='0.00' name="avgfuelbill" class="form-control" placeholder="Monthly Fuel Bill">
                     </div>
                 </div>
             </div>
@@ -60,11 +60,11 @@
                 <div class="row" style="margin: 0 20px;">
                     <div class="formpart col-lg-6" style="margin: 20px 0;">
                         <label for="electricitybill">Waste do you generate per month in KG</label>
-                        <input type="number" name="avgwastegen" class="form-control" placeholder="Monthly Generated Waste in KG">
+                        <input type="number" step='0.01' value='0.00' name="avgwastegen" class="form-control" placeholder="Monthly Generated Waste in KG">
                     </div>
                     <div class="formpart col-lg-4" style="margin: 20px 0;">
                         <label for="electricitybill">Monthly natural gas bill in €</label>
-                        <input type="range" name="avgwastecompose" min="0" max="100" value="0" class="slider" id="myRange"><span id="demo"></span>
+                        <input type="range" name="avgwastecompose" min="0" max="100" value="0" class="slider" id="myRange"><span name="barvalue" id="demo"></span>
                     </div>
                     
                 </div>
@@ -75,11 +75,11 @@
                 <div class="row" style="margin: 0 20px;">
                     <div class="formpart col-lg-6" style="margin: 20px 0;">
                         <label for="electricitybill">How many km do your employees travel per year</label>
-                        <input type="number" name="avgkmtravel" class="form-control" placeholder="Employees Travel Per Year">
+                        <input type="number" step='0.01' value='0.00' name="avgkmtravel" class="form-control" placeholder="Employees Travel Per Year">
                     </div>
                     <div class="formpart col-lg-6" style="margin: 20px 0;">
                         <label for="electricitybill">Average fuel efficiency of vehicles for travel in liters per 100 kms</label>
-                        <input type="number" name="avgfuelefficiency" class="form-control" placeholder="Fuel efficiency per 100 KM">
+                        <input type="number" step='0.01' value='0.00' name="avgfuelefficiency" class="form-control" placeholder="Fuel efficiency per 100 KM">
                     </div>
                     
                 </div>
@@ -94,35 +94,6 @@
 </div>
 <br><br><br>
 
-{% if avgelectricitybill is not none and avgfuelbill is not none %}
-
-<div class="container">
-    <h2 style="font-family: math; text-align: center; color: green;">Report Generated Successfully</h2>
-        <div class="row">
-            <div class="well outputtab col-lg-4">
-                <h4>Energy Usage</h4>
-                <br>
-                <h6>Average Electricity Bill : {{ avgelectricitybill }} €</h6>
-                <h6>Average Naturalgas Bill : {{ avggasbill }} €</h6>
-                <h6>Average Fuel Bill : {{ avgfuelbill }} €</h6>
-                
-            </div>
-            <div class="well outputtab col-lg-4">
-                <h4>Waste Management</h4>
-                <br>
-                <h6>Monthly Waste Generated  : {{ avgwastegen }} KM</h6>
-                <h6>Waste composed/recycled percent : {{ avgwastecompose }} %</h6>
-                
-            </div>
-            <div class="well outputtab col-lg-4">
-                <h4>Business Travel</h4>
-                <br>
-                <h6>Employees travel per year for business  : {{ avgkmtravel }} KM</h6>
-                <h6>Average fuel efficiency per 100 km : {{ avgfuelefficiency }} €</h6>
-            </div>
-        </div>
-    </div>
-{% endif %}
 
 </body>
 <script>

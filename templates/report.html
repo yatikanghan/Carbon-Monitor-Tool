@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Report</title>
+    <link rel="stylesheet" href="{{ (url_for('static', filename='main.css')) }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2 style="font-family: math; text-align: center; color: green;">Report Generated Successfully</h2>
+        <br><br>
+        <div class="container" style="text-align: center;">
+            <div class="row">
+                <img src="{{ chart_path }}" alt="Pie Chart">
+            </div>
+        </div>
+        <div class="row">
+            <div class="well outputtab col-lg-4" style="height: 200px; text-align: center;">
+                <h4 style="margin-top: 20px;">Energy Usage</h4>
+                <br>
+                <h6>Average Electricity Bill : {{ avgelectricitybill }} €</h6>
+                <h6>Average Naturalgas Bill : {{ avggasbill }} €</h6>
+                <h6>Average Fuel Bill : {{ avgfuelbill }} €</h6>
+                <h6>Carbon Footprint :: {{ Energysector }}</h6>
+                
+            </div>
+            <div class="well outputtab col-lg-4" style="height: 200px; text-align: center;">
+                <h4 style="margin-top: 20px;">Waste Management</h4>
+                <br>
+                <h6>Monthly Waste Generated  : {{ avgwastegen }} KM</h6>
+                <h6>Waste composed/recycled percent : {{ avgwastecompose }} %</h6>
+                <h6>Carbon Footprint :: {{ Wastesector }}</h6>
+                
+            </div>
+            <div class="well outputtab col-lg-4" style="height: 200px; text-align: center;">
+                <h4 style="margin-top: 20px;">Business Travel</h4>
+                <br>
+                <h6>Employees travel per year for business  : {{ avgkmtravel }} KM</h6>
+                <h6>Average fuel efficiency per 100 km : {{ avgfuelefficiency }} €</h6>
+                <h6>Carbon Footprint :: {{ Travelsector }}</h6>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
