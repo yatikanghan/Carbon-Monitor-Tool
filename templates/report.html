@@ -18,6 +18,7 @@
                 <img src="{{ chart_path }}" alt="Pie Chart">
             </div>
         </div>
+        <br><br>
         <div class="row">
             <div class="well outputtab col-lg-4" style="height: 200px; text-align: center;">
                 <h4 style="margin-top: 20px;">Energy Usage</h4>
@@ -45,5 +46,59 @@
             </div>
         </div>
     </div>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="suggesionhead">
+                <h2>Carbon Reduction Recommendation : </h2>
+                <hr class="solid">
+                <br>
+                <ol>⦿ Primary Focus on : <b>{{ HighImpact[0] }}</b>, That Makes Highest Impact : <b>( {{ HighImpact[1] }} kgCO2 )</b></ol>
+                <ol>⦿ Secondary Focus on : <b>{{ MediumImpact[0] }}</b>, That Makes Impact : <b>( {{ MediumImpact[1] }} kgCO2 )</b></ol>
+                <ol>⦿ Monitor : <b>{{ LowImpact[0] }}</b>, That Impact : <b>( {{ LowImpact[1] }} kgCO2 )</b></ol>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    
+    <div class="container">
+        <div class="row">
+            <div class="reducesuggestion">
+                <div class="col-lg-4">
+                    <h2><b>Energy Usage </b></h2>
+                <br>
+                <ol>⁍ Switch to renewable energy sources like solar or wind.</ol>
+                <ol>⁍ Use energy-efficient appliances and smart systems.</ol>
+                <ol>⁍ Practice energy conservation by turning off unused devices.</ol>
+                <br>
+                </div>
+                <div class="col-lg-4">
+                    <h2><b>Waste Management </b></h2>
+                <br>
+                <ol>⁍ Reduce single-use items and reuse materials.</ol>
+                <ol>⁍ Recycle paper, plastics, and electronics effectively.</ol>
+                <ol>⁍ Compost organic waste to limit landfill emissions.</ol>
+                <br>
+                </div>
+                <div class="col-lg-4">
+                    <h2><b>Business Travel </b></h2>
+                <br>
+                <ol>⁍ Replace non-essential travel with virtual meetings.</ol>
+                <ol>⁍ Use public transport, carpooling, or ride-sharing.</ol>
+                <ol>⁍ Offset travel emissions with carbon offset programs.</ol>
+                <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <form action="/downloadreport" method="post">
+                <button type="submit" class="pdfdownloadbtn">PDF Report Download</button>
+            </form>
+        </div>
+    </div>
+    <br><br><br>
 </body>
 </html>

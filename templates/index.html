@@ -34,7 +34,8 @@
             </div>
             <div class="well">
                 <label for="companyname">Company Name :</label>
-                <input type="text" class="form-control" placeholder="Company Name">
+                <input name="companyname" type="text" class="form-control" placeholder="Company Name">
+                <span class="errormsg">{{ errors.get('companyname', '') }}</span>
             </div>
             
             <div class="well">
@@ -42,15 +43,19 @@
                 <div class="row">
                     <div class="formpart col-lg-4" style="margin: 20px 20px;">
                         <label for="electricitybill">Monthly electricity bill in €</label>
-                        <input type="number" step='0.01' value='0.00' name="avgelectricitybill" class="form-control" placeholder="Monthly Electricity Bill">
+                        <input type="number" step='0.01' value='0' name="avgelectricitybill" class="form-control" placeholder="Monthly Electricity Bill">
+                        <span class="errormsg">{{ errors.get('avgelectricitybill', '') }}</span>
                     </div>
                     <div class="formpart col-lg-3" style="margin: 20px 5px;">
                         <label for="electricitybill">Monthly natural gas bill in €</label>
-                        <input type="number" step='0.01' value='0.00' name="avggasbill" class="form-control" placeholder="Monthly Electricity Bill">
+                        <input type="number" step='0.01' value='0' name="avggasbill" class="form-control" placeholder="Monthly Electricity Bill">
+                        <span class="errormsg">{{ errors.get('avggasbill', '') }}</span>
+
                     </div>
                     <div class="formpart col-lg-4" style="margin: 20px 10px;">
                         <label for="electricitybill">Monthly fuel bill in transportation in €</label>
-                        <input type="number" step='0.01' value='0.00' name="avgfuelbill" class="form-control" placeholder="Monthly Fuel Bill">
+                        <input type="number" step='0.01' value='0' name="avgfuelbill" class="form-control" placeholder="Monthly Fuel Bill">
+                        <span class="errormsg">{{ errors.get('avgfuelbill', '') }}</span>
                     </div>
                 </div>
             </div>
@@ -60,12 +65,13 @@
                 <div class="row" style="margin: 0 20px;">
                     <div class="formpart col-lg-6" style="margin: 20px 0;">
                         <label for="electricitybill">Waste do you generate per month in KG</label>
-                        <input type="number" step='0.01' value='0.00' name="avgwastegen" class="form-control" placeholder="Monthly Generated Waste in KG">
+                        <input type="number" step='0.01' value='0' name="avgwastegen" class="form-control" placeholder="Monthly Generated Waste in KG">
+                        <span class="errormsg">{{ errors.get('avgwastegen', '') }}</span>
                     </div>
                     <div class="formpart col-lg-4" style="margin: 20px 0;">
                         <label for="electricitybill">Monthly natural gas bill in €</label>
                         <input type="range" name="avgwastecompose" min="0" max="100" value="0" class="slider" id="myRange"><span name="barvalue" id="demo"></span>
-                    </div>
+                    </div> 
                     
                 </div>
             </div>
@@ -75,11 +81,13 @@
                 <div class="row" style="margin: 0 20px;">
                     <div class="formpart col-lg-6" style="margin: 20px 0;">
                         <label for="electricitybill">How many km do your employees travel per year</label>
-                        <input type="number" step='0.01' value='0.00' name="avgkmtravel" class="form-control" placeholder="Employees Travel Per Year">
+                        <input type="number" step='0.01' value='0' name="avgkmtravel" class="form-control" placeholder="Employees Travel Per Year">
+                        <span class="errormsg">{{ errors.get('avgkmtravel', '') }}</span>
                     </div>
                     <div class="formpart col-lg-6" style="margin: 20px 0;">
                         <label for="electricitybill">Average fuel efficiency of vehicles for travel in liters per 100 kms</label>
-                        <input type="number" step='0.01' value='0.00' name="avgfuelefficiency" class="form-control" placeholder="Fuel efficiency per 100 KM">
+                        <input type="number" step='0.01' value='0' name="avgfuelefficiency" class="form-control" placeholder="Fuel efficiency per 100 KM">
+                        <span class="errormsg">{{ errors.get('avgfuelefficiency', '') }}</span>
                     </div>
                     
                 </div>
