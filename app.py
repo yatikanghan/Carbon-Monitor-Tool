@@ -1,11 +1,13 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request, send_file, session
 import matplotlib.pyplot as plt
 import io
+from reportlab.pdfgen import canvas
 
 app=Flask(__name__)
 
 
 errors = {}
+app.secret_key = "123456789"
 
 @app.route("/")
 def index():
@@ -54,6 +56,23 @@ def report():
             Energysector=(avgelectricitybill)*(12)*(0.0005)+(avggasbill)*(12)*(0.0053)+(avgfuelbill)*(12)*(2.32)
             Wastesector=(avgwastegen)*(12)*(0.57)-(avgwastecompose)
             Travelsector=(avgkmtravel)*(1/avgfuelefficiency)*(2.31)
+
+            session["companyname"]=companyname
+            session["ebill"]=avgelectricitybill
+            session["gbill"]=avggasbill
+            session["fbill"]=avgfuelbill
+            session["wgen"]=avgwastegen
+            session["wcom"]=avgwastecompose
+            session["tyear"]=avgkmtravel
+            session["feff"]=avgfuelefficiency
+            session["carbonenergy"]=Energysector
+            session["carbonwaste"]=Wastesector
+            session["carbontravel"]=Travelsector
+            
+            
+             
+
+
             labels=['Energy Usage', 'Waste Management', 'Business Travel']
             values=[Energysector,Wastesector,Travelsector]
             chart_path=generate_pie_chart(values,labels)
@@ -101,5 +120,32 @@ def generate_pie_chart(values,labels):
     return chart_path
 
 
-app.run(debug=True)
 
+@app.route('/generate_pdf', methods=['POST'])
+def generate_pdf():
+    
+
+
+    pdf_path = 'details.pdf'
+    chart_path = 'static/chart.png'
+    c = canvas.Canvas(pdf_path)
+    c.drawString(100, 750, "Carbon Footprint Monitor")
+    c.drawString(100, 730, f"Company Name : {session.get("companyname")}")
+    c.drawString(100, 680, f"Monthly Gas Bill : {session.get("gbill")}")
+    c.drawString(100, 700, f"Monthly Electricity Bill : {session.get("ebill")}")
+    c.drawString(100, 660, f"Monthly Fuel Bill : {session.get("fbill")}")
+    c.drawString(100, 640, f"Monthly Waste Generated : {session.get("wgen")}")
+    c.drawString(100, 620, f"Monthly Waste Composed or Recycled Percentage : {session.get("wcom")}%")
+    c.drawString(100, 600, f"Employee Travel for Business Purpose : {session.get("tyear")}")
+    c.drawString(100, 580, f"Average Fuel efficiency per 100 km : {session.get("feff")}\n\n")
+    c.drawString(100, 560, f"Energy Sector Carbon Footprint : {session.get("carbonenergy")}")
+    c.drawString(100, 540, f"Waste Sector Carbon Footprint : {session.get("carbonwaste")}")
+    c.drawString(100, 520, f"Travel Sector Carbon Footprint : {session.get("carbontravel")}")
+    # c.drawString(100, 690, f"Argument 3: {args[2]}")
+    c.drawImage(chart_path, 100, 100, width=400, height=300)
+    c.save()
+
+    return send_file(pdf_path, as_attachment=True)
+
+
+app.run(debug=True)
