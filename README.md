@@ -52,6 +52,8 @@ python app.py
 ## Additional Documentation and Acknowledgments
 
 ### Calculate Carbon :
+
+*  Your company name
 *  Average monthly electricity bill in €
 *  Average monthly natural gas bill in €
 *  Average monthly fuel bill in €
@@ -59,3 +61,8 @@ python app.py
 *  Monthly waste recycled/composed percentage
 *  Your employees travel for business purposess per year
 *  Average fuel efficiency per 100 km in €
+
+### Conclusion :
+
+You can calculate and analyse your companys carbon footprint by our application. You can view, analyse, and download as a PDF your companys carbon footprint report. and also we provide some suggestions how to reduced carbon footprints.
+
