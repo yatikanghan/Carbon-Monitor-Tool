@@ -8,7 +8,7 @@ A carbon footprint is the total amount of greenhouse gases (including carbon dio
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 
-### Technologies
+## Technologies
 * HTML
 * CSS
 * Javascript
@@ -17,7 +17,7 @@ These instructions will get you a copy of the project up and running on your loc
 * Matplotlib
 
 
-### Features
+## Features
 
 The things you need before installing the software.
 
@@ -29,7 +29,7 @@ The things you need before installing the software.
 
 
 
-### Installation
+## Installation
 
 A step by step guide that will tell you how to get the development environment up and running. The requirements.txt file contains all requirements that requires to run the applications.
 
@@ -54,14 +54,14 @@ python app.py
 Additional notes on how to deploy this on a live or release system. Explaining the most important branches, what pipelines they trigger and how to update the database (if anything special).
 
 
-### Server
+## Server
 
 * Live:
 * Release:
 * Development:
 
 
-### Branches
+## Branches
 
 * Master:
 * Feature:
