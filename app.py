@@ -73,6 +73,7 @@ def report():
              
 
 
+            
             labels=['Energy Usage', 'Waste Management', 'Business Travel']
             values=[Energysector,Wastesector,Travelsector]
             chart_path=generate_pie_chart(values,labels)
@@ -148,4 +149,4 @@ def generate_pdf():
     return send_file(pdf_path, as_attachment=True)
 
 
-app.run(debug=True)
+app.run(debug=True) 
