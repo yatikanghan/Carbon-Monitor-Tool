@@ -49,28 +49,13 @@ python app.py
 ```
 
 
-## Deployment
-
-Additional notes on how to deploy this on a live or release system. Explaining the most important branches, what pipelines they trigger and how to update the database (if anything special).
-
-
-## Server
-
-* Live:
-* Release:
-* Development:
-
-
-## Branches
-
-* Master:
-* Feature:
-* Bugfix:
-* etc...
-
 ## Additional Documentation and Acknowledgments
 
-* Project folder on server:
-* Confluence link:
-* Asana board:
-* etc...
+### Calculate Carbon :
+*  Average monthly electricity bill in €
+*  Average monthly natural gas bill in €
+*  Average monthly fuel bill in €
+*  Average monthly generated waste in KG
+*  Monthly waste recycled/composed percentage
+*  Your employees travel for business purposess per year
+*  Average fuel efficiency per 100 km in €
