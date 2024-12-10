@@ -127,7 +127,7 @@ def generate_pdf():
     
 
 
-    pdf_path = 'details.pdf'
+    pdf_path = 'carbonfootprintreport.pdf'
     chart_path = 'static/chart.png'
     c = canvas.Canvas(pdf_path)
     c.drawString(100, 750, "Carbon Footprint Monitor")
