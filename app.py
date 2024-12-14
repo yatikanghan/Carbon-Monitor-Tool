@@ -36,20 +36,36 @@ def report():
         # ------------------
         if not companyname or len(companyname.strip()) < 2:
             errors["companyname"] = "Company name must be at least 2 characters long."
+        else:
+            errors["companyname"]=""
         if avgelectricitybill is None or avgelectricitybill <= 0:
             errors["avgelectricitybill"] = "Electricity bill must be a non-negative number."
+        else:
+            errors["avgelectricitybill"]=""
         if avggasbill is None or avggasbill <= 0:
             errors["avggasbill"] = "Natural gas bill must be a non-negative number."
+        else:
+            errors["avggasbill"]=""
         if avgfuelbill is None or avgfuelbill <= 0:
             errors["avgfuelbill"] = "Fuel bill must be a non-negative number."
+        else:
+            errors["avgfuelbill"]=""
         if avgwastegen is None or avgwastegen <= 0:
             errors["avgwastegen"] = "Waste generated must be a non-negative number."
+        else:
+            errors["avgwastegen"]=""
         if avgwastecompose is None or not (0 <= avgwastecompose <= 100):
             errors["avgwastecompose"] = "Waste composed must be between 0 and 100."
+        else:
+            errors["avgwastecompose"]=""
         if avgkmtravel is None or avgkmtravel <= 0:
             errors["avgkmtravel"] = "Kilometers traveled must be a non-negative number."
+        else:
+            errors["avgkmtravel"]=""
         if avgfuelefficiency is None or avgfuelefficiency <= 0:
             errors["avgfuelefficiency"] = "Fuel efficiency must be a positive number."
+        else:
+            errors["avgfuelefficiency"]=""
 
         # If no errors, process data
         if not errors:
