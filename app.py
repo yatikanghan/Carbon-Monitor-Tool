@@ -2,17 +2,37 @@ from flask import Flask, render_template,request, send_file, session
 import matplotlib.pyplot as plt
 import io
 from reportlab.pdfgen import canvas
+from flask_sqlalchemy import SQLAlchemy
 
 app=Flask(__name__)
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///carbon.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-errors = {}
+
+mydb = SQLAlchemy(app)
+
+
+errors = {} # error s empty
 app.secret_key = "123456789"
+
+class Carbon(mydb.Model):
+    cid = mydb.Column(mydb.Integer, primary_key=True, autoincrement=True)
+    companyname = mydb.Column(mydb.String(100))
+    energy_sector = mydb.Column(mydb.String(100))
+    waste_sector = mydb.Column(mydb.String(100))
+    travel_sector = mydb.Column(mydb.String(100))
+
+with app.app_context():
+    mydb.create_all()
+
+
 
 @app.route("/")
 def index():
     errors = {}
-    return render_template('index.html', errors=errors)
+    mydatabase = Carbon.query.all()
+    return render_template('index.html', errors=errors, mydatabase=mydatabase)
 
 @app.route("/report", methods=['GET',"POST"])
 def report():
@@ -20,15 +40,37 @@ def report():
     if request.method == "POST":
 
         companyname=request.form.get("companyname")
-        avgelectricitybill=float(request.form.get("avgelectricitybill"))
-        avggasbill=float(request.form.get("avggasbill"))
-        avgfuelbill=float(request.form.get("avgfuelbill"))
 
-        avgwastegen=float(request.form.get("avgwastegen"))
-        avgwastecompose=float(request.form.get("avgwastecompose"))
+        try:
+            avgelectricitybill=float(request.form.get("avgelectricitybill"))
+        except:
+            avgelectricitybill=0
+        try:
+            avggasbill=float(request.form.get("avggasbill"))
+        except:
+            avggasbill=0
+        try:
+            avgfuelbill=float(request.form.get("avgfuelbill"))
+        except:
+            avgfuelbill=0
 
-        avgkmtravel=float(request.form.get("avgkmtravel"))
-        avgfuelefficiency=float(request.form.get("avgfuelefficiency"))
+        try:
+            avgwastegen=float(request.form.get("avgwastegen"))
+        except:
+            avgwastegen=0
+        try:
+            avgwastecompose=float(request.form.get("avgwastecompose"))
+        except:
+            avgwastecompose=0
+
+        try:
+            avgkmtravel=float(request.form.get("avgkmtravel"))
+        except:
+            avgkmtravel=0
+        try:
+            avgfuelefficiency=float(request.form.get("avgfuelefficiency"))
+        except:
+            avgfuelefficiency=0
 
         
 
@@ -36,42 +78,43 @@ def report():
         # ------------------
         if not companyname or len(companyname.strip()) < 2:
             errors["companyname"] = "Company name must be at least 2 characters long."
-        else:
-            errors["companyname"]=""
+        #else:
+        #    errors.pop("companyname")
         if avgelectricitybill is None or avgelectricitybill <= 0:
             errors["avgelectricitybill"] = "Electricity bill must be a non-negative number."
-        else:
-            errors["avgelectricitybill"]=""
+        #else:
+        #    errors.pop("avgelectricitybill")
         if avggasbill is None or avggasbill <= 0:
             errors["avggasbill"] = "Natural gas bill must be a non-negative number."
-        else:
-            errors["avggasbill"]=""
+        #else:
+        #    errors.pop("avggasbill")
         if avgfuelbill is None or avgfuelbill <= 0:
             errors["avgfuelbill"] = "Fuel bill must be a non-negative number."
-        else:
-            errors["avgfuelbill"]=""
+        #else:
+        #    errors.pop("avgfuelbill")
         if avgwastegen is None or avgwastegen <= 0:
             errors["avgwastegen"] = "Waste generated must be a non-negative number."
-        else:
-            errors["avgwastegen"]=""
+        #else:
+        #    errors.pop("avgwastegen")
         if avgwastecompose is None or not (0 <= avgwastecompose <= 100):
             errors["avgwastecompose"] = "Waste composed must be between 0 and 100."
-        else:
-            errors["avgwastecompose"]=""
+        #else:
+        #    errors.pop("avgwastecompose")
         if avgkmtravel is None or avgkmtravel <= 0:
             errors["avgkmtravel"] = "Kilometers traveled must be a non-negative number."
-        else:
-            errors["avgkmtravel"]=""
+        #else:
+        #    errors.pop("avgkmtravel")
         if avgfuelefficiency is None or avgfuelefficiency <= 0:
             errors["avgfuelefficiency"] = "Fuel efficiency must be a positive number."
-        else:
-            errors["avgfuelefficiency"]=""
+        #else:
+        #    errors.pop("avgfuelefficiency")
 
         # If no errors, process data
         if not errors:
             Energysector=(avgelectricitybill)*(12)*(0.0005)+(avggasbill)*(12)*(0.0053)+(avgfuelbill)*(12)*(2.32)
             Wastesector=(avgwastegen)*(12)*(0.57)-(avgwastecompose)
             Travelsector=(avgkmtravel)*(1/avgfuelefficiency)*(2.31)
+
 
             session["companyname"]=companyname
             session["ebill"]=avgelectricitybill
@@ -86,7 +129,9 @@ def report():
             session["carbontravel"]=Travelsector
             
             
-             
+            newcompany = Carbon(companyname=session["companyname"], energy_sector=Energysector, waste_sector=Wastesector, travel_sector=Travelsector)
+            mydb.session.add(newcompany)
+            mydb.session.commit()
 
 
             

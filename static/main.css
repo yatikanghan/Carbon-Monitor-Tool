@@ -53,3 +53,12 @@ hr.solid {
     margin: 15px 5px;
     color: red;
 }
+.menubar{
+    margin-left: 25px;
+}
+.menubar button{
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}

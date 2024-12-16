@@ -12,9 +12,9 @@
 <body>
 <div class="header">
     <div class="headertxt">
-        <h1>CARBON MONITOR</h1>
+        <h1 style="display: inline-block;">CARBON MONITOR</h1>
     </div>
-</div>
+</div>  
 <div class="container">
     <div class="row">
         <h2 style="font-family: math;">Carbon Footprint Monitoring System</h2>
@@ -104,6 +104,40 @@
 </div>
 <br><br><br>
 
+<div class="container">
+    <div class="row">
+        <div class="headermain">
+            <h1> History </h1>
+          </div>
+    </div>
+</div>
+<div class="container">
+    <div class="table-responsive">
+        <h2>Carbon Monitoring Tool</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                <th>SNo</th>
+                <th>Comany Name</th>
+                <th>Energy Sector CO2</th>
+                <th>Waste Sector CO2</th>
+                <th>Travel Sector CO2</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in mydatabase %}
+                <tr>
+                <td>{{row.cid}}</td>
+                <td>{{row.companyname}}</td>
+                <td>{{row.energy_sector}}</td>
+                <td>{{row.waste_sector}}</td>
+                <td>{{row.travel_sector}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 
 </body>
 <script>
