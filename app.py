@@ -32,6 +32,7 @@ with app.app_context():
 def index():
     errors = {}
     mydatabase = Carbon.query.all()
+    # mydata='yatik="Anghan"
     return render_template('index.html', errors=errors, mydatabase=mydatabase)
 
 @app.route("/report", methods=['GET',"POST"])
